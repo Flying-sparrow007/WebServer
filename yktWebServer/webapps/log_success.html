@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆成功</title>
+    <style type="text/css">
+        div{
+            width: 405px;
+            margin: 50px auto;
+            color: green;
+            font-size: 45px;
+            font-weight: bolder;
+        }
+        div button{
+            margin-left: 30%;
+            width: 125px;
+            cursor: pointer;
+        }
+        .index{
+            width: 70px;
+            height: 25px;
+            color: white;
+            border-radius: 10px;
+            margin-left: 37%;
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        恭喜你,登陆成功!<br>
+        <button onclick="select()">查询所有用户信息</button><br>
+        <button class="index" onclick="index()">返回首页</button>
+    </div>
+</body>
+<script type="text/javascript">
+    function select() {
+        location.href = "SelectAllUserServlet";
+    }
+    function index() {
+        location.href = "index.html";
+    }
+</script>
+</html>

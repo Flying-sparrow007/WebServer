@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改页面</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: orange;
+        }
+        div{
+            width: 256px;
+            margin: 30px auto;
+        }
+        h1{
+            text-align: center;
+        }
+        table{
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        table tr td{
+            border: 1px solid #000000;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+        table tr td:first-child{
+            text-align: left;
+            line-height: 30px;
+        }
+        table tr:last-child td:first-child{
+            text-align: center;
+            line-height: 30px;
+        }
+        table tr td input{
+            height: 25px;
+        }
+        .submit{
+            width: 50px;
+            color: white;
+            border-radius: 10px;
+            background-color: green;
+            cursor: pointer;
+        }
+        .index{
+            width: 70px;
+            height: 25px;
+            color: white;
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-left: 37%;
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="ModifyServlet" method="get">
+        <h1>修改密码页面</h1>
+        <table>
+            <tr>
+                <td>姓名:</td>
+                <td><input type="text" name="username" placeholder="请输入用户姓名" /></td>
+            </tr>
+            <tr>
+                <td>原密码:</td>
+                <td><input type="password" name="password" placeholder="请输入用户新密码" /></td>
+            </tr>
+            <tr>
+                <td>新密码:</td>
+                <td><input type="password" name="newPassword" placeholder="请输入用户新密码" /></td>
+            </tr>
+            <tr>
+                <td>确认密码:</td>
+                <td><input type="password" name="confirmPassword" placeholder="请输入用户确认密码" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="修改" class="submit" /></td>
+            </tr>
+        </table>
+    </form>
+    <button class="index" onclick="index()">返回首页</button>
+</div>
+</body>
+<script type="text/javascript">
+    function index() {
+        location.href = "index.html";
+    }
+</script>
+</html>

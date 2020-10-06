@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servlets>
+    <servlet>
+        <url>/LoginServlet</url>
+        <className>com.ykt.webServer.servlet.LoginServlet</className>
+    </servlet>
+    <servlet>
+        <url>/ModifyServlet</url>
+        <className>com.ykt.webServer.servlet.ModifyServlet</className>
+    </servlet>
+    <servlet>
+        <url>/RegisterServlet</url>
+        <className>com.ykt.webServer.servlet.RegisterServlet</className>
+    </servlet>
+    <servlet>
+        <url>/SelectAllUserServlet</url>
+        <className>com.ykt.webServer.servlet.SelectAllUserServlet</className>
+    </servlet>
+</servlets>

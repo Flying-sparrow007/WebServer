@@ -1,0 +1,170 @@
+HTTP协议,超文本传输协议.
+HTTP协议现在使用的是1.1版本.
+
+HTTP协议是应用层协议,底层要求使用可靠传输协议传输 
+数据.通常传输层协议使用TCP协议.
+
+TCP协议规定两台计算机之间如何传输数据.
+HTTP协议规定传输的数据的格式,以便于两台计算机之间
+理解对方发送的内容.
+
+HTTP协议规定了客户端与服务端之间的通讯模式必须遵循
+1次请求1次响应的通讯过程.
+
+首先由客户端发起请求(Request),客户端通常是浏览器.
+然后服务端接收并输出该请求,然后给予响应(Response).
+服务端永远不会主动给客户端响应.
+
+HTTP1.1版本相较于1.0版本的一个通讯方式的改进在于:
+一次TCP连接可以进行多次请求与响应.而1.0版本时一次
+TCP连接只能进行一次请求一次响应(多次请求响应才能
+完成工作是开销大).
+
+
+HTTP请求(Request)
+请求有客户端发送至服务端.具体格式在Http协议中有规定.
+
+一个请求会包含三部分:
+1:请求行
+2:消息头
+3:消息正文
+
+
+请求行:
+请求行是一行字符串,格式为:
+method url protocol(CRLF)
+例如
+GET /index.html HTTP/1.1(CRLF)
+
+method:请求的方式,常见的GET,POST.
+GET:地址栏请求,通常用户传递数据会直接体现在url部分
+POST:用户传递的数据包含在消息正文部分,传附件时一定
+         会使用POST形式
+
+url:客户端希望请求的资源的路径
+
+protocol:客户端发起的请求使用的HTTP协议版本        
+
+CR:回车符,对应编码:13
+LF:换行符,对应编码:10   
+
+
+
+消息头:
+消息头由若干行组成,每行都以CRLF结尾.
+每一行为一个具体的消息头内容.格式为:  
+name: value(CRLF)
+例如:
+Host: localhost:8080(CRLF)
+Connection: keep-alive(CRLF)
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML,likeGecko)Chrome/63.0.3239.108 Safari/537.36(CRLF)
+Upgrade-Insecure-Requests: 1(CRLF)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8Accept-Encoding: gzip, deflate, br(CRLF)
+Accept-Language: zh-CN,zh;q=0.9(CRLF)
+(CRLF)
+
+最后一个消息头后面会再跟一个单独的CRLF,表示消息头
+部分完毕.
+消息头内容是客户端发送给服务端的一些附带信息,比如
+告知服务端客户端的相关信息,是否含有消息正文内容等等
+
+
+
+消息正文:
+消息正文是2进制数据,是请求中附带的用户提交的数据.
+他可能是用户上传的附件,注册信息等.一个请求可能不
+包含消息正文部分.
+GET请求不包含消息正文.
+当一个请求包含消息正文部分时,通常消息头中会包含
+两个用于说明消息正文的头信息:
+Content-Type:用于说明消息正文的数据类型
+Content-Length:用于说明消息正文共多少字节
+
+HTTP协议中的请求行和消息头部分是文本数据,但是字符集
+只能是ISO8859-1规定字符.所以是不能直接附带汉字信息
+的.
+
+一个标准的请求如:
+GET /index.html HTTP/1.1
+Host: localhost:8080
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36
+Upgrade-Insecure-Requests: 1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+
+
+
+
+HTTP响应
+HTTP响应是服务端发送给客户端的内容.
+
+一个响应也分为三部分:
+1.状态行,2.响应头,3.响应正文
+
+
+状态行:
+状态行由一行字符串描述.格式:
+protorol statusCode statusReason(CRLF)
+协议版本   状态码          状态描述
+
+状态代码由一个三位数组构成,用于告知客户端该请求
+服务端的处理情况.具体数字有各自含义,可以参看协议
+文档    RFC1945
+1xx:在http1.0版本时作为保留,并未使用
+2xx:成功
+3xx:重定向
+4xx:客户端请求错误
+5xx:服务端处理错误
+
+常见的状态码:
+200:服务器接收请求并正确处理完毕
+302:要求客户端重定向至指定路径
+404:客户端请求的资源服务端未找到
+500:客户端请求已接受,但是处理过程出现了错误.
+
+状态行内容例如:
+HTTP/1.1 500 Internal Server Error(CRLF)
+
+
+
+响应头:
+响应头与请求中的消息头格式一致,也是由若干行构成
+每行为一个响应头.格式:
+name: value(CRLF)
+
+当所有的响应头发送完后要单独发送一个CRLF表示响应
+头部分结束.
+
+响应头是服务端回复客户端时附带的信息,常见的包含着
+服务端名称,说明响应正文数据格式和长度信息的,以及
+重定向中要求客户端请求的新路径,cookie信息等等.
+
+重定向不包含响应正文
+
+例如:
+Content-Type: text/html(CRLF)
+Content-Length: 1235(CRLF)(CRLF)
+
+
+响应正文
+响应正文是客户端实际请求的资源内容.是一个2进制数据
+长度以及类型会在响应头中的Content-Length和
+Content-Type说明
+
+一个完整的响应内容:
+HTTP/1.1 200 OK(CRLF)
+Content-Type: text/html(CRLF)
+Content-Length: 1235(CRLF)(CRLF)
+101001010010011.......
+
+
+
+
+
+
+
+
+
+

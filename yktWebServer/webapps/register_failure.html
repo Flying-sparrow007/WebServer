@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册失败页面</title>
+    <style type="text/css">
+        div{
+            width: 410px;
+            margin: 50px auto;
+            color: red;
+            font-size: 45px;
+            font-weight: bolder;
+        }
+        .register{
+            width: 50px;
+            height: 25px;
+            color: white;
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-left: 39%;
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        注册失败,请仔细核对信息再进行注册!<br>
+        <button class="register" onclick="register()">注册</button>
+    </div>
+</body>
+<script type="text/javascript">
+    function register() {
+        location.href = "register.html";
+    }
+</script>
+</html>

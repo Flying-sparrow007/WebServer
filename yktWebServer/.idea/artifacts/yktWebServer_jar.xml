@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="yktWebServer:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="yktWebServer.jar">
+      <element id="module-output" name="yktWebServer" />
+      <element id="extracted-dir" path="E:/学习资料/益康特/SE/dom4j-1.6.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
